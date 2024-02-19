@@ -1,0 +1,45 @@
+<%- include('includes/header')%>
+
+<body>
+  <link rel="stylesheet" type="text/css" href="/css/login.css" />
+  <form class="login_container" action="/shopp/login" method="POST">
+    <div class="login_frame">
+      <div class="login_top">
+        <span>Welcome</span>
+        <div>
+          Back to home page
+          <a href="/shopp" style="color: #6440fb">Home</a>
+        </div>
+        <p>
+          Do not have an account with us?
+          <a href="/shopp/sign-up" style="color: #6440fb">Sign Up</a>
+        </p>
+      </div>
+
+      <div class="login_input_frame">
+        <div class="login_input_container">
+          <label for="">User Name:</label>
+          <input
+            type="text"
+            name="mb_nick"
+            value=""
+            placeholder="User name"
+            required
+          />
+        </div>
+        <div class="login_input_container">
+          <label for="">Password:</label>
+          <input
+            type="password"
+            name="mb_password"
+            value=""
+            placeholder="Password"
+            required
+          />
+        </div>
+      </div>
+      <button class="login_btn btn" type="submit">Submit</button>
+    </div>
+  </form>
+</body>
+<%- include('includes/footer')%>

@@ -1,0 +1,119 @@
+<%- include('includes/header')%>
+
+  <body>
+    <link rel="stylesheet" type="text/css" href="/css/login.css" />
+    <form onsubmit="return validateSignUpForm()" class="login_container" action="/shopp/sign-up" method="POST"
+      enctype="multipart/form-data">
+      <div class="login_frame" style="width: 640px; height: 700px">
+        <div class="login_top">
+          <span>Sign Up</span>
+          <div>
+            Back to home page
+            <a href="/shopp" style="color: #6440fb">Home</a>
+          </div>
+          <p>
+            Sing in before?
+            <a href="/shopp/login" style="color: #6440fb">Login</a>
+          </p>
+        </div>
+
+        <div class="sign_input_frame">
+          <div class="sign_up_frame">
+            <label for="">User Name</label>
+            <input type="text" name="mb_nick" class="mb_nick" value="" placeholder="User Name" required />
+          </div>
+          <div class="sign_up_frame">
+            <label for="">Phone number</label>
+            <input type="text" name="mb_phone" class="mb_phone" value="" placeholder="Phone number" required />
+          </div>
+        </div>
+        <div class="sign_input_frame">
+          <div class="sign_up_frame">
+            <label for="">Password</label>
+            <input type="password" name="mb_password" class="mb_password" value="" placeholder="Password"
+              required />
+          </div>
+          <div class="sign_up_frame">
+            <label for="">Confirm Password</label>
+            <input type="password" name="mb_confirm_password" class="mb_confirm_password" value=""
+              placeholder="Confirm Password" required />
+          </div>
+        </div>
+        <div class="login_input_frame">
+          <div class="media_frame">
+            <img class="upload_img_frame" src="/images/gold.jpeg" alt="" />
+            <div class="upload_container">
+              <span class="media_text">Shopp image</span>
+              <div class="filebox bs3-primary preview-image">
+                <label for="input_file">Download image</label>
+                <input type="file" id="input_file" name="shopp_img"
+                  class="upload-hidden form-control-file shopp_img" />
+              </div>
+              <p class="thubnail_desc">
+                Download Shopp images here.<br />Important instructions: .jpg
+                .jpeg or .png. <br />
+              </p>
+            </div>
+          </div>
+        </div>
+        <button class="login_btn" name="signup" type="submit">
+          Submit
+        </button>
+      </div>
+    </form>
+  </body>
+  <script>
+    $(function () {
+      let fileTarget = $(".filebox .upload-hidden");
+      let filename = "";
+      fileTarget.on("change", function () {
+        if (window.FileReader) {
+          const uploading_file = $(this)[0].files[0];
+          console.log("javob", uploading_file);
+          const fileType = uploading_file["type"];
+          const validImagestype = ["image/jpg", "image/jpeg", "image/png"];
+          if (!validImagestype.includes(fileType)) {
+            alert(
+              "Please upload licensed formad, jpg,jpeg, va png"
+            );
+          } else {
+            if (uploading_file) {
+              console.log(URL.createObjectURL(uploading_file));
+              $(".upload_img_frame")
+                .attr("src", URL.createObjectURL(uploading_file))
+                .addClass("success");
+            }
+            filename = uploading_file.name;
+          }
+        }
+        $(this).siblings(".upload-name").val(filename);
+      });
+    });
+
+    function validateSignUpForm() {
+      const mb_nick = $(".mb_nick").val();
+      const mb_password = $(".mb_password ").val();
+      const mb_phone = $(".mb_phone ").val();
+      const mb_confirm_password = $(".mb_confirm_password ").val();
+      const shopp_img = $(".shopp_img").get(0).files[0] ?? null;
+
+      if (
+        mb_nick == "" ||
+        mb_phone == "" ||
+        mb_password == "" ||
+        mb_confirm_password == ""
+      ) {
+        alert("Please write all info");
+        return false;
+      } else if (mb_password !== mb_confirm_password) {
+        alert(`Please write true password`);
+        return false;
+      }
+      if (!restaurant_img) {
+        alert("Please download images");
+        return false;
+      }
+      return true;
+    }
+  </script>
+  <%- include('includes/footer')%>

@@ -8,11 +8,11 @@ const memberSchema = new mongoose.Schema(
       required: true,
       index: { unique: true, sparse: true },
     },
-    mb_email: {
-      type: String,
-      required: true,
-      index: { unique: true, sparse: true },
-    },
+    // mb_email: {
+    //   type: String,
+    //   required: true,
+    //   index: { unique: true, sparse: true },
+    // },
     mb_phone: {
       type: String,
       required: true,
@@ -21,6 +21,7 @@ const memberSchema = new mongoose.Schema(
       type: String,
       required: true,
       select: false,
+      index: { unique: true, sparse: true },
     },
     mb_type: {
       type: String,
@@ -80,4 +81,4 @@ const memberSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports.module("Member", memberSchema);
+module.exports = mongoose.model("Member",memberSchema)
