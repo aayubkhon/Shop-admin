@@ -4,11 +4,11 @@ let ShoppController = module.exports;
 
 ShoppController.getMyShoppData = async (req, res) => {
   try {
-    console.log("GET: cont/getMyRestaurantData");
+    console.log("GET: cont/getMyShoppData");
     // TODO Get my restaurant products
     res.render("shopp-menu");
   } catch (err) {
-    console.log(`ERROR, cont/getMyRestaurantData, ${err.message} `);
+    console.log(`ERROR, cont/getMyShoppData, ${err.message} `);
     res.json({ state: "fail", message: err.message });
   }
 };
@@ -80,7 +80,7 @@ ShoppController.logout = (req, res) => {
   res.send("we are in logout page");
 };
 
-ShoppController.validateAuthRestaurant = (req, res, next) => {
+ShoppController.validateAuthShopp = (req, res, next) => {
   if (req.session?.member?.mb_type === "SHOPP") {
     req.member = req.session.member;
     next();
